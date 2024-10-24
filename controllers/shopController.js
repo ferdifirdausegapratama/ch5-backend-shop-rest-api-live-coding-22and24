@@ -1,4 +1,5 @@
 const { Shops, Products, Users } = require("../models");
+const { Op } = require("sequelize");
 
 const createShop = async (req, res) => {
   const { name, adminEmail, userId } = req.body;
@@ -48,12 +49,22 @@ const createShop = async (req, res) => {
 
 const getAllShop = async (req, res) => {
   try {
+    const { shopName, adminEmail, productName, stock } = req.query;
+
+    const conditions = {};
+    if (shopName) conditions.name = { [Op.iLike]: `%${shopName}%` };
+
+    const prodctCondition = {};
+    if (productName) prodctCondition.name = { [Op.iLike]: `%${productName}%` };
+    if (stock) prodctCondition.stock = stock;
+
     const shops = await Shops.findAll({
       include: [
         {
           model: Products,
           as: "products",
-          attributes: ["name", "images"],
+          attributes: ["name", "images", "stock", "price"],
+          where: prodctCondition,
         },
         {
           model: Users,
@@ -62,13 +73,17 @@ const getAllShop = async (req, res) => {
         },
       ],
       attributes: ["name", "adminEmail"],
+      where: conditions,
     });
+
+    const totalData = shops.length;
 
     res.status(200).json({
       status: "Success",
       message: "Success get shops data",
       isSuccess: true,
       data: {
+        totalData,
         shops,
       },
     });
@@ -92,7 +107,6 @@ const getAllShop = async (req, res) => {
     });
   }
 };
-
 const getShopById = async (req, res) => {
   const id = req.params.id;
 
