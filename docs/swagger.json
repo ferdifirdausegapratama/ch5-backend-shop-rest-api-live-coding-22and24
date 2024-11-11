@@ -1,0 +1,185 @@
+{
+  "status": "Success",
+  "message": "Success get shops data",
+  "isSuccess": true,
+  "data": {
+    "totalData": 100,
+    "shops": [
+      {
+        "name": "Weber, Wyman and Klein",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Tasty Metal Car",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 21,
+            "price": 39622
+          }
+        ],
+        "user": {
+          "name": "Andrew Turcotte"
+        }
+      },
+      {
+        "name": "Franecki - Murazik",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Incredible Frozen Gloves",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 24,
+            "price": 38314
+          }
+        ],
+        "user": {
+          "name": "Kelly Brekke"
+        }
+      },
+      {
+        "name": "Champlin, Mertz and Lindgren",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Handmade Frozen Pizza",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 25,
+            "price": 21102
+          }
+        ],
+        "user": {
+          "name": "Lance Wiegand"
+        }
+      },
+      {
+        "name": "Kreiger - Hahn",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Modern Wooden Keyboard",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 13,
+            "price": 15123
+          }
+        ],
+        "user": {
+          "name": "Jason Lehner"
+        }
+      },
+      {
+        "name": "Gutmann Group",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Generic Steel Bacon",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 30,
+            "price": 22892
+          }
+        ],
+        "user": {
+          "name": "Marjorie Bayer"
+        }
+      },
+      {
+        "name": "Windler - Dibbert",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Sleek Metal Bacon",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 20,
+            "price": 15970
+          }
+        ],
+        "user": {
+          "name": "Jordan Streich"
+        }
+      },
+      {
+        "name": "Jacobs, Jerde and Stamm",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Oriental Cotton Pants",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 12,
+            "price": 37903
+          }
+        ],
+        "user": {
+          "name": "Laverne Stoltenberg"
+        }
+      },
+      {
+        "name": "Hartmann LLC",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Modern Steel Chicken",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 19,
+            "price": 19422
+          }
+        ],
+        "user": {
+          "name": "Kendra Prohaska"
+        }
+      },
+      {
+        "name": "McGlynn, Christiansen and Kshlerin",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Practical Granite Shoes",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 16,
+            "price": 39311
+          }
+        ],
+        "user": {
+          "name": "Angelo Roob"
+        }
+      },
+      {
+        "name": "Bartell, Torphy and Abbott",
+        "adminEmail": null,
+        "products": [
+          {
+            "name": "Refined Rubber Fish",
+            "images": [
+              "https://ik.imagekit.io/imamth/Profile-17-1729202156932_ieaMdNeZB.png?updatedAt=1729202158471"
+            ],
+            "stock": 27,
+            "price": 28540
+          }
+        ],
+        "user": {
+          "name": "Barbara King"
+        }
+      }
+    ],
+    "pagination": {
+      "page": 1,
+      "size": 10,
+      "totalPages": 10
+    }
+  }
+}

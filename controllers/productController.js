@@ -1,4 +1,5 @@
 const { Products, Shops } = require("../models");
+const { Op } = require("sequelize");
 
 const createProduct = async (req, res) => {
   const { name, stock, price, shopId } = req.body;
@@ -49,13 +50,49 @@ const createProduct = async (req, res) => {
 
 const getAllProduct = async (req, res) => {
   try {
-    const products = await Products.findAll({
+    const { productName, shopName, stock, minPrice, maxPrice } = req.query;
+
+    // Mendapatkan parameter page dan limit dari query string
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+
+    // Membuat kondisi pencarian untuk Products
+    const productConditions = {};
+    if (productName) {
+      productConditions.name = { [Op.iLike]: `%${productName}%` };
+    }
+    if (stock) {
+      productConditions.stock = stock;
+    }
+    if (minPrice) {
+      productConditions.price = { [Op.gte]: minPrice };
+    }
+    if (maxPrice) {
+      productConditions.price = {
+        ...productConditions.price,
+        [Op.lte]: maxPrice,
+      };
+    }
+
+    // Membuat kondisi pencarian untuk Shops
+    const shopConditions = {};
+    if (shopName) {
+      shopConditions.name = { [Op.iLike]: `%${shopName}%` };
+    }
+
+    // Mengambil data products dengan pagination dan conditions
+    const products = await Products.findAndCountAll({
       include: [
         {
           model: Shops,
           as: "shop",
+          where: shopConditions,
         },
       ],
+      where: productConditions,
+      limit: limit,
+      offset: offset,
     });
 
     res.status(200).json({
@@ -63,7 +100,10 @@ const getAllProduct = async (req, res) => {
       message: "Success get products data",
       isSuccess: true,
       data: {
-        products,
+        totalItems: products.count,
+        totalPages: Math.ceil(products.count / limit),
+        currentPage: page,
+        products: products.rows,
       },
     });
   } catch (error) {

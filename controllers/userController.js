@@ -1,16 +1,50 @@
 const { Users } = require("../models");
+const { Op } = require("sequelize");
 
 const findUsers = async (req, res, next) => {
   try {
-    const users = await Users.findAll();
+    // Mendapatkan parameter page dan limit dari query string
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const offset = (page - 1) * limit;
+
+    // Membuat kondisi pencarian untuk Users
+    const userConditions = {};
+    if (req.query.name) {
+      userConditions.name = { [Op.iLike]: `%${req.query.name}%` }; // Mencari berdasarkan nama
+    }
+    if (req.query.role) {
+      userConditions.role = req.query.role; // Mencari berdasarkan role
+    }
+    // Tambahkan kondisi lain jika perlu
+
+    // Mengambil data users dengan pagination dan conditions
+    const users = await Users.findAndCountAll({
+      where: userConditions,
+      limit: limit,
+      offset: offset,
+    });
 
     res.status(200).json({
       status: "Success",
+      message: "Success get users data",
+      isSuccess: true,
       data: {
-        users,
+        totalItems: users.count,
+        totalPages: Math.ceil(users.count / limit),
+        currentPage: page,
+        users: users.rows,
       },
     });
-  } catch (err) {}
+  } catch (error) {
+    console.log(error.name);
+    res.status(500).json({
+      status: "Failed",
+      message: error.message,
+      isSuccess: false,
+      data: null,
+    });
+  }
 };
 
 const findUserById = async (req, res, next) => {
